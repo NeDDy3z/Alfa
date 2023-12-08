@@ -1,0 +1,26 @@
+﻿[
+  {
+    "subject": "A",
+  "classroom" : "5b",
+  "teacher" : "Šárka Paltíková",
+  "type" : "teorie"
+  },
+  {
+    "subject": "A",
+    "classroom" : "26",
+    "teacher" : "Šárka Paltíková",
+    "type" : "teorie"
+  },
+  {
+    "subject": "A",
+    "classroom" : "29",
+    "teacher" : "Šárka Paltíková",
+    "type" : "teorie"
+  },
+  {
+    "subject": "A",
+    "classroom" : "29",
+    "teacher" : "Šárka Paltíková",
+    "type" : "teorie"
+  }
+]
