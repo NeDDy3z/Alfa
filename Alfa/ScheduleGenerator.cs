@@ -1,42 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Alfa
 {
     public class ScheduleGenerator
     {
-        private List<string> subjects;
-        private List<List<List<string>>> allSchedules;
+        private List<List<List<Subject>>> allSchedules;
+        private List<Subject> subjects;
+        private Stopwatch stopwatch;
+        private int timeout;
         
-        public ScheduleGenerator(List<string> subjects, List<List<List<string>>> allSchedules)
+        public ScheduleGenerator(List<Subject> subjects, List<List<List<Subject>>> allSchedules, int timeout)
         {
             this.subjects = subjects;
             this.allSchedules = allSchedules;
+            this.timeout = timeout;
+            this.stopwatch = new Stopwatch();
         }
-
 
         
         public void Generate()
         {
+            stopwatch.Start();
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            var cancellationToken = cancellationTokenSource.Token;
+
+            // Use Task.Run to run the GenerateSchedules method asynchronously
+            var task = Task.Run(() => GenerateSchedules(cancellationToken), cancellationToken);
+
+            // Wait for the task to complete or for the specified time
+            if (!task.Wait(TimeSpan.FromMilliseconds(timeout)))
+            {
+                Console.WriteLine("Generation timed out. Terminating...");
+                cancellationTokenSource.Cancel();
+            }
+        }
+        
+        private void GenerateSchedules(CancellationToken cancellationToken)
+        {
             var permutations = GetPermutations(subjects);
-            
+
             // Distribute subjects across days
             foreach (var permutation in permutations)
             {
-                List<List<string>> schedule = new List<List<string>>();
+                // Check if cancellation is requested
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    Console.WriteLine("Generation canceled.");
+                    break;
+                }
+
+                List<List<Subject>> schedule = new List<List<Subject>>();
 
                 for (int i = 0; i < 5; i++)
                 {
-                    // Each day can have up to 10 subjects
-                    List<string> daySubjects = permutation.Skip(i * 10).Take(10).ToList();
+                    List<Subject> daySubjects = permutation.Skip(i * 10).Take(10).ToList();
                     schedule.Add(daySubjects);
                 }
-
                 allSchedules.Add(schedule);
-                //SchedulePrinter(schedule);
             }
         }
+        
         
         private IEnumerable<IEnumerable<T>> GetPermutations<T>(List<T> list)
         {
@@ -48,16 +77,19 @@ namespace Alfa
                 (e, c) => c.Prepend(e)
             );
         }
-
-        private void SchedulePrinter(List<List<string>> schedule)
+        
+        public void PrintSchedules()
         {
-            Console.WriteLine("Schedule");
-            foreach (var day in schedule)
+            Console.WriteLine("Variants generated: "+ allSchedules.Count);
+            int scheduleNumber = 1;
+            foreach (var schedule in allSchedules)
             {
+                Console.WriteLine($"Schedule {scheduleNumber++}:"); 
                 for (int i = 0; i < schedule.Count; i++)
-                {
-                    Console.WriteLine($"Day {i + 1}: {string.Join(", ", schedule[i])}");
+                {   
+                    Console.WriteLine($"Day {i + 1}: {string.Join(", ", schedule[i].Select(subject => subject.ToString()))}");
                 }
+
                 Console.WriteLine();
             }
         }

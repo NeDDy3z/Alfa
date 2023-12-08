@@ -25,3 +25,5 @@ C:\Dev\School\PV\alfa\Alfa\Alfa\obj\Debug\Alfa.csproj.CoreCompileInputs.cache
 C:\Dev\School\PV\alfa\Alfa\Alfa\obj\Debug\Alfa.csproj.CopyComplete
 C:\Dev\School\PV\alfa\Alfa\Alfa\obj\Debug\Alfa.exe
 C:\Dev\School\PV\alfa\Alfa\Alfa\obj\Debug\Alfa.pdb
+C:\Dev\School\PV\alfa\Alfa\Alfa\bin\Debug\Newtonsoft.Json.dll
+C:\Dev\School\PV\alfa\Alfa\Alfa\bin\Debug\Newtonsoft.Json.xml
