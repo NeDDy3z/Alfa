@@ -9,19 +9,18 @@ namespace Alfa
 {
     public class ScheduleGenerator
     {
-        private List<List<List<Subject>>> allSchedules;
+        private List<List<List<Subject>>> unratedSchedules;
         private List<Subject> subjects;
         private Stopwatch stopwatch;
         private int timeout;
         
-        public ScheduleGenerator(List<Subject> subjects, List<List<List<Subject>>> allSchedules, int timeout)
+        public ScheduleGenerator(List<Subject> subjects, List<List<List<Subject>>> unratedSchedules, int timeout)
         {
             this.subjects = subjects;
-            this.allSchedules = allSchedules;
+            this.unratedSchedules = unratedSchedules;
             this.timeout = timeout;
             this.stopwatch = new Stopwatch();
         }
-
         
         public void Generate()
         {
@@ -62,7 +61,7 @@ namespace Alfa
                     List<Subject> daySubjects = permutation.Skip(i * 10).Take(10).ToList();
                     schedule.Add(daySubjects);
                 }
-                allSchedules.Add(schedule);
+                unratedSchedules.Add(schedule);
             }
         }
         
@@ -76,22 +75,6 @@ namespace Alfa
                 (e, i) => GetPermutations(list.Take(i).Concat(list.Skip(i + 1)).ToList()),
                 (e, c) => c.Prepend(e)
             );
-        }
-        
-        public void PrintSchedules()
-        {
-            Console.WriteLine("Variants generated: "+ allSchedules.Count);
-            int scheduleNumber = 1;
-            foreach (var schedule in allSchedules)
-            {
-                Console.WriteLine($"Schedule {scheduleNumber++}:"); 
-                for (int i = 0; i < schedule.Count; i++)
-                {   
-                    Console.WriteLine($"Day {i + 1}: {string.Join(", ", schedule[i].Select(subject => subject.ToString()))}");
-                }
-
-                Console.WriteLine();
-            }
         }
     }
 }

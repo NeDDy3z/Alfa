@@ -7,24 +7,24 @@ namespace Alfa
 {
     public class Subject
     {
-        private string subject;
+        private string subjectName;
         private string classroom;
         private string teacher;
         private bool theory;
 
-        public Subject(string subject, string classroom, string teacher, bool theory)
+        public Subject(string subjectName, string classroom, string teacher, bool theory)
         {
-            this.subject = subject;
+            this.subjectName = subjectName;
             this.classroom = classroom;
             this.teacher = teacher;
             this.theory = theory;
         }
 
-        public override string ToString()
-        {
-            return this.subject;
-        }
-
+        public string SubjectName { get { return this.subjectName; } }
+        public string Classroom { get { return this.classroom; } }
+        public string Teacher { get { return this.teacher; } }
+        public bool Theory { get { return this.theory; } }
+        
         public static void LoadFromFile(List<Subject> list, string filePath)
         {
             string json = File.ReadAllText(filePath);

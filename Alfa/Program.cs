@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 
 namespace Alfa
 {
@@ -13,13 +6,20 @@ namespace Alfa
     {
         public static void Main(string[] args)
         {
-            List<List<List<Subject>>> allSchedules = new List<List<List<Subject>>>();
+            // Declaration
+            List<List<List<Subject>>> unratedSchedules = new List<List<List<Subject>>>();
+            List<List<List<Subject>>> ratedSchedules = new List<List<List<Subject>>>();
             List<Subject> subjects = new List<Subject>();
-            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(subjects, allSchedules, 50);
+            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(subjects, unratedSchedules, 300);
+            Printer printer = new Printer();
+            
+            
             
             Subject.LoadFromFile(subjects, "../../classes.json");
             scheduleGenerator.Generate();
-            scheduleGenerator.PrintSchedules();
+            printer.PrintSchedules(unratedSchedules);
+            
+            
         }
     }
 }
