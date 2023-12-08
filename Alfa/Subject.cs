@@ -10,14 +10,14 @@ namespace Alfa
         private string subject;
         private string classroom;
         private string teacher;
-        private string theory;
+        private bool theory;
 
         public Subject(string subject, string classroom, string teacher, bool theory)
         {
             this.subject = subject;
             this.classroom = classroom;
             this.teacher = teacher;
-            this.theory = this.theory;
+            this.theory = theory;
         }
 
         public override string ToString()
