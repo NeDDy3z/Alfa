@@ -14,9 +14,9 @@ namespace Alfa
             {
                 List<Subject> day = schedule[dayIndex].SelectMany(subjects => subjects).ToList();
 
-                // 1. Each hour has its own rating
-                if (day[0].SubjectName == null) totalPoints += 50_000;
-                if (day.Take(5).Any(subject => subject.SubjectName == null)) totalPoints += 50_000;
+                // 1. If first hour is empty || last 4 are empty +50k points
+                if (day[0].SubjectName == null || day.Take(4).Any(subject => subject.SubjectName == null))
+                    totalPoints += 50_000;
 
                 // 2. Check for duplicate subjects
                 if (day.Any(subject => subject.SubjectName != null && subject.Theory && day.Count(s => s.SubjectName == subject.SubjectName) == 1))
@@ -52,6 +52,12 @@ namespace Alfa
                         profileSubjects.Any(subject => subject != day[0].SubjectName))
                     totalPoints += 500_000;
                 else totalPoints -= 50_000;
+                
+                //8.
+                //9.
+                //10. When I meet Pustomas I want to kill myself -> -50k
+                if (day.Any(subject => subject.Teacher != null && subject.Teacher.Contains("Masopust")))
+                    totalPoints -= 50_000;
             }
 
             return totalPoints;

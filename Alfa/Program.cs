@@ -10,7 +10,7 @@ namespace Alfa
             List<List<List<Subject>>> unratedSchedules = new List<List<List<Subject>>>();
             List<List<List<Subject>>> ratedSchedules = new List<List<List<Subject>>>();
             List<Subject> subjects = new List<Subject>();
-            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(subjects, unratedSchedules, 300);
+            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(subjects, unratedSchedules, 1000);
             Printer printer = new Printer();
             
             

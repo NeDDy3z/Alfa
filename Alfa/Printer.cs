@@ -25,7 +25,7 @@ namespace Alfa
                 for (int i = 0; i < schedule.Count; i++)
                 {
                     temp = "";
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < schedule[i].Count; j++)
                     {
                         if (schedule[i][j].SubjectName.Length == 1) temp += schedule[i][j].SubjectName + "  ";
                         if (schedule[i][j].SubjectName.Length == 2) temp += schedule[i][j].SubjectName + " ";
