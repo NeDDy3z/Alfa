@@ -9,29 +9,29 @@ namespace Alfa
 {
     public class ScheduleGenerator
     {
-        private List<List<List<Subject>>> unratedSchedules;
-        private List<Subject> subjects;
-        private Stopwatch stopwatch;
-        private int timeout;
+        private List<List<List<Subject>>> _unratedSchedules;
+        private List<Subject> _subjects;
+        private Stopwatch _stopwatch;
+        private int _timeout;
 
 
         public ScheduleGenerator(List<Subject> subjects, List<List<List<Subject>>> unratedSchedules, int timeout)
         {
-            this.subjects = subjects;
-            this.unratedSchedules = unratedSchedules;
-            this.timeout = timeout;
-            this.stopwatch = new Stopwatch();
+            this._subjects = subjects;
+            this._unratedSchedules = unratedSchedules;
+            this._timeout = timeout;
+            this._stopwatch = new Stopwatch();
         }
 
         public void Generate()
         {
-            stopwatch.Start();
+            _stopwatch.Start();
 
             var cancellationTokenSource = new CancellationTokenSource();
             var cancellationToken = cancellationTokenSource.Token;
             var task = Task.Run(() => GenerateSchedules(cancellationToken), cancellationToken);
 
-            if (!task.Wait(TimeSpan.FromSeconds(timeout)))
+            if (!task.Wait(TimeSpan.FromSeconds(_timeout)))
             {
                 Console.WriteLine("Generation timed out. Terminating...");
                 cancellationTokenSource.Cancel();
@@ -40,7 +40,7 @@ namespace Alfa
 
         private void GenerateSchedules(CancellationToken cancellationToken)
         {
-            var permutations = GetPermutations(subjects);
+            var permutations = GetPermutations(_subjects);
 
             foreach (var permutation in permutations)
             {
@@ -51,13 +51,12 @@ namespace Alfa
                 }
 
                 List<List<Subject>> schedule = new List<List<Subject>>();
-
                 for (int i = 0; i < 5; i++)
                 {
                     List<Subject> daySubjects = permutation.Skip(i * 10).Take(10).ToList();
                     schedule.Add(daySubjects);
                 }
-                if (IsValidSchedule(schedule)) unratedSchedules.Add(schedule);
+                if (IsValidSchedule(schedule)) _unratedSchedules.Add(schedule);
             }
         }
 
@@ -70,34 +69,26 @@ namespace Alfa
                 {
                     if (!schedule[i][j].Theory)
                     {
-                        if (j == 0)
+                        if (j < 9)
                         {
                             if (schedule[i][j].SubjectName == schedule[i][j + 1].SubjectName &&
                                 schedule[i][j + 1].Theory == false) continue;
-                            else return false;
+                            else if (!(schedule[i][j].SubjectName == schedule[i][j - 1].SubjectName &&
+                                       schedule[i][j - 1].Theory == false)) return false;
                         }
                         else if (j == 9)
                         {
-                            if (schedule[i][j].SubjectName == schedule[i][j - 1].SubjectName &&
-                                schedule[i][j - 1].Theory == false) continue;
-                            else return false;
-                        }
-                        else
-                        {
-                            if (schedule[i][j].SubjectName == schedule[i][j + 1].SubjectName &&
-                                schedule[i][j + 1].Theory == false) continue;
-                            else if (schedule[i][j].SubjectName == schedule[i][j - 1].SubjectName &&
-                                     schedule[i][j - 1].Theory == false) continue;
-                            else return false;
+                            if (!(schedule[i][j].SubjectName == schedule[i][j - 1].SubjectName &&
+                                schedule[i][j - 1].Theory == false)) return false;
                         }
                     }
                 }
             }
             
             // Compare to the previous schedule and if it's the same, return false
-            if (unratedSchedules.Count > 0)
+            if (_unratedSchedules.Count > 0)
             {
-                foreach (var unratedSchedule in unratedSchedules)
+                foreach (var unratedSchedule in _unratedSchedules)
                 {
                     if (schedule.SequenceEqual(unratedSchedule)) return false;
                 }
