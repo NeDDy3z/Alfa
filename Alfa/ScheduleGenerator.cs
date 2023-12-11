@@ -13,8 +13,8 @@ namespace Alfa
         private List<Subject> subjects;
         private Stopwatch stopwatch;
         private int timeout;
-        
-        
+
+
         public ScheduleGenerator(List<Subject> subjects, List<List<List<Subject>>> unratedSchedules, int timeout)
         {
             this.subjects = subjects;
@@ -29,16 +29,15 @@ namespace Alfa
 
             var cancellationTokenSource = new CancellationTokenSource();
             var cancellationToken = cancellationTokenSource.Token;
-
             var task = Task.Run(() => GenerateSchedules(cancellationToken), cancellationToken);
-            
+
             if (!task.Wait(TimeSpan.FromSeconds(timeout)))
             {
                 Console.WriteLine("Generation timed out. Terminating...");
                 cancellationTokenSource.Cancel();
             }
         }
-        
+
         private void GenerateSchedules(CancellationToken cancellationToken)
         {
             var permutations = GetPermutations(subjects);
@@ -58,48 +57,55 @@ namespace Alfa
                     List<Subject> daySubjects = permutation.Skip(i * 10).Take(10).ToList();
                     schedule.Add(daySubjects);
                 }
-                
-                if (IsValidSchedule(schedule))
-                {
-                    Console.WriteLine(schedule);
-                    unratedSchedules.Add(schedule);
-                }
+                if (IsValidSchedule(schedule)) unratedSchedules.Add(schedule);
             }
         }
 
         private bool IsValidSchedule(List<List<Subject>> schedule)
         {
-            // Check if subjects with the same name and theory:false are together
+            // If you find subject with theory == false, there must be another subject with same name and theory == false next to it, if there is, skip the next iteration, otherwise return false
             for (int i = 0; i < schedule.Count; i++)
             {
-                for (int j = 0; i < schedule[i].Count - 1; j++)
+                for (int j = 0; j < schedule[i].Count; j++)
                 {
-                    if (schedule[i][j].SubjectName == schedule[i][j + 1].SubjectName && !schedule[i][j].Theory) j++;
-                    else return false;
+                    if (!schedule[i][j].Theory)
+                    {
+                        if (j == 0)
+                        {
+                            if (schedule[i][j].SubjectName == schedule[i][j + 1].SubjectName &&
+                                schedule[i][j + 1].Theory == false) continue;
+                            else return false;
+                        }
+                        else if (j == 9)
+                        {
+                            if (schedule[i][j].SubjectName == schedule[i][j - 1].SubjectName &&
+                                schedule[i][j - 1].Theory == false) continue;
+                            else return false;
+                        }
+                        else
+                        {
+                            if (schedule[i][j].SubjectName == schedule[i][j + 1].SubjectName &&
+                                schedule[i][j + 1].Theory == false) continue;
+                            else if (schedule[i][j].SubjectName == schedule[i][j - 1].SubjectName &&
+                                     schedule[i][j - 1].Theory == false) continue;
+                            else return false;
+                        }
+                    }
                 }
-                
-                // Check if there are more than one subjects with the same name and theory:true per day
-                var theorySubjects = schedule[i].Where(subject => subject.Theory).ToList();
-                var theorySubjectNames = theorySubjects.Select(subject => subject.SubjectName).ToList();
-                if (theorySubjectNames.Distinct().Count() != theorySubjectNames.Count()) return false;
+            }
+            
+            // Compare to the previous schedule and if it's the same, return false
+            if (unratedSchedules.Count > 0)
+            {
+                foreach (var unratedSchedule in unratedSchedules)
+                {
+                    if (schedule.SequenceEqual(unratedSchedule)) return false;
+                }
             }
 
-            /*            
-            // Check if only two different subjects with different names were switched
-            var subjectNames = new HashSet<string>();
-            for (int day = 0; day < 5; day++)
-            {
-                var daySubjects = schedule[day];
-                foreach (var subject in daySubjects)
-                {
-                    if (subjectNames.Contains(subject.SubjectName)) return false; // Subjects with the same name were switched
-                    subjectNames.Add(subject.SubjectName);
-                }
-            }
-            */
+
             return true;
         }
-
 
 
         private IEnumerable<IEnumerable<T>> GetPermutations<T>(List<T> list)

@@ -6,16 +6,7 @@ namespace Alfa
 {
     public class Printer
     {
-        private List<List<List<Subject>>> unratedSchedules;
-        private List<List<List<Subject>>> ratedSchedules;
-
-        public Printer(List<List<List<Subject>>> unratedSchedules, List<List<List<Subject>>> ratedSchedules)
-        {
-            this.unratedSchedules = unratedSchedules;
-            this.ratedSchedules = ratedSchedules;
-        }
-
-        public void PrintSchedules()
+        public static void PrintSchedules(List<List<List<Subject>>> schedules)
         {
             Dictionary<int, string> days = new Dictionary<int, string>()
             {
@@ -26,7 +17,7 @@ namespace Alfa
                 { 5 ,"Pá" }
             };
             int scheduleNumber = 1;
-            foreach (var schedule in unratedSchedules)
+            foreach (var schedule in schedules)
             {
                 Console.WriteLine($"\nSchedule {scheduleNumber++}:"); 
                 Console.WriteLine("    1. 2. 3. 4. 5. 6. 7. 8. 9. 10.");
@@ -46,7 +37,7 @@ namespace Alfa
             }
         }
 
-        public void PrintSchedule(List<List<Subject>> schedule)
+        public static void PrintSchedule(List<List<Subject>> schedule)
         {
             Dictionary<int, string> days = new Dictionary<int, string>()
             {
@@ -56,7 +47,7 @@ namespace Alfa
                 { 4, "Čt" },
                 { 5 ,"Pá" }
             };
-            Console.WriteLine("     1.  2.  3.  4.  5.  6.  7.  8.  9.  10.");
+            Console.WriteLine("\n     1.  2.  3.  4.  5.  6.  7.  8.  9.  10.");
             string temp = "";
             for (int i = 0; i < schedule.Count; i++)
             {
@@ -71,7 +62,7 @@ namespace Alfa
             }
         }
 
-        public void PrintStats()
+        public static void PrintStats(List<List<List<Subject>>> unratedSchedules, List<List<List<Subject>>> ratedSchedules)
         {
             Console.WriteLine($"Generated: {unratedSchedules.Count}");
             Console.WriteLine($"Rated: {ratedSchedules.Count}");

@@ -93,7 +93,7 @@
     "subject": "DB",
     "classroom": "25",
     "teacher": "Antonín Vobecký",
-    "theory": true
+    "theory": false
   },
   {
     "subject": "DB",
@@ -153,25 +153,72 @@
     "subject": "DB",
     "classroom": "25",
     "teacher": "Antonín Vobecký",
+    "theory": true
+  },
+  {
+    "subject": "PIS",
+    "classroom": "25",
+    "teacher": "Lucie Brčáková",
     "theory": false
   },
   {
     "subject": "PIS",
     "classroom": "25",
     "teacher": "Lucie Brčáková",
-    "theory": true
-  },
-  {
-    "subject": "PIS",
-    "classroom": "25",
-    "teacher": "Lucie Brčáková",
-    "theory": true
+    "theory": false
   },
   {
     "subject": "TP",
     "classroom": "25",
     "teacher": "Lukáš Masopust",
     "theory": true
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  
+  
+  
+  
+  
+  {
+    "subject": "PSS",
+    "classroom": "25",
+    "teacher": "Lukáš Masopust",
+    "theory": true
+  },
+  {
+    "subject": "PSS",
+    "classroom": "8a",
+    "teacher": "Lukáš Masopust",
+    "theory": false
+  },
+  {
+    "subject": "PSS",
+    "classroom": "8a",
+    "teacher": "Lukáš Masopust",
+    "theory": false
+  },
+  {
+    "subject": "TV",
+    "classroom": "TV",
+    "teacher": "Pavel Lopocha",
+    "theory": false
   },
   {
     "subject": "TV",
@@ -198,24 +245,6 @@
     "theory": null
   },
   {
-    "subject": "PSS",
-    "classroom": "25",
-    "teacher": "Lukáš Masopust",
-    "theory": true
-  },
-  {
-    "subject": "PSS",
-    "classroom": "8a",
-    "teacher": "Lukáš Masopust",
-    "theory": false
-  },
-  {
-    "subject": "PSS",
-    "classroom": "8a",
-    "teacher": "Lukáš Masopust",
-    "theory": false
-  },
-  {
     "subject": null,
     "classroom": null,
     "teacher": null,
@@ -227,30 +256,11 @@
     "teacher": null,
     "theory": null
   },
-  {
-    "subject": null,
-    "classroom": null,
-    "teacher": null,
-    "theory": null
-  },
-  {
-    "subject": null,
-    "classroom": null,
-    "teacher": null,
-    "theory": null
-  },
-  {
-    "subject": null,
-    "classroom": null,
-    "teacher": null,
-    "theory": null
-  },
-  {
-    "subject": null,
-    "classroom": null,
-    "teacher": null,
-    "theory": null
-  },
+  
+  
+  
+  
+  
   {
     "subject": "PV",
     "classroom": "25",
@@ -267,12 +277,6 @@
     "subject": "PV",
     "classroom": "18b",
     "teacher": "Ondřej Mandík",
-    "theory": false
-  },
-  {
-    "subject": "TV",
-    "classroom": "TV",
-    "teacher": "Pavel Lopocha",
     "theory": false
   },
   {
@@ -298,6 +302,12 @@
     "classroom": "19b",
     "teacher": "Simona Hemžalová",
     "theory": false
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
   },
   {
     "subject": null,

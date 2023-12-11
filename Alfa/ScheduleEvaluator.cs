@@ -4,9 +4,27 @@ using System.Linq;
 
 namespace Alfa
 {
-    public class ScheduleRating
-    {
-        public int EvaluateSchedule(List<List<List<Subject>>> schedule)
+    public class ScheduleEvaluator
+    {   
+
+        private List<List<List<Subject>>> unratedSchedules;
+        private List<List<List<Subject>>> ratedSchedules;
+
+        public ScheduleEvaluator(List<List<List<Subject>>> unratedSchedules, List<List<List<Subject>>> ratedSchedules)
+        {
+            this.unratedSchedules = unratedSchedules;
+            this.ratedSchedules = ratedSchedules;
+        }
+        
+        
+
+        public void Evaluate()
+        {
+            
+        }
+        
+        /*
+        public int GetScheduleScore(List<List<Subject>> schedule)
         {
             int totalPoints = 0;
 
@@ -62,7 +80,7 @@ namespace Alfa
 
             return totalPoints;
         }
-
+        */
 
     }
 }

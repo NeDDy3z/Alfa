@@ -73,10 +73,11 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Printer.cs" />
+        <Compile Include="Schedule.cs" />
         <Compile Include="ScheduleGenerator.cs" />
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="ScheduleRating.cs" />
+        <Compile Include="ScheduleEvaluator.cs" />
         <Compile Include="Subject.cs" />
     </ItemGroup>
     <ItemGroup>
