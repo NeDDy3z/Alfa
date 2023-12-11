@@ -56,7 +56,7 @@ namespace Alfa
                 //8.
                 //9.
                 //10. When I meet Pustomas I want to kill myself -> -50k
-                if (day.Any(subject => subject.Teacher != null && subject.Teacher.Contains("Masopust")))
+                if (day.Any(subject => subject.Teacher.Contains("Masopust")))
                     totalPoints -= 50_000;
             }
 

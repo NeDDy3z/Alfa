@@ -1,0 +1,314 @@
+﻿[
+  {
+    "subject": "A",
+    "classroom": "5b",
+    "teacher": "Šárka Paltíková",
+    "theory": true
+  },
+  {
+    "subject": "C",
+    "classroom": "25",
+    "teacher": "Kristína Studénková",
+    "theory": true
+  },
+  {
+    "subject": "M",
+    "classroom": "25",
+    "teacher": "Libuše Hrabalová",
+    "theory": true
+  },
+  {
+    "subject": "AM",
+    "classroom": "25",
+    "teacher": "Filip Kallmünzer",
+    "theory": true
+  },
+  {
+    "subject": "CIT",
+    "classroom": "17b",
+    "teacher": "Jakub Mazuch",
+    "theory": false
+  },
+  {
+    "subject": "CIT",
+    "classroom": "17b",
+    "teacher": "Jakub Mazuch",
+    "theory": false
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  
+  
+  
+  
+  
+  
+  {
+    "subject": "A",
+    "classroom": "29",
+    "teacher": "Šárka Paltíková",
+    "theory": true
+  },
+  {
+    "subject": "C",
+    "classroom": "25",
+    "teacher": "Kristína Studénková",
+    "theory": true
+  },
+  {
+    "subject": "M",
+    "classroom": "25",
+    "teacher": "Libuše Hrabalová",
+    "theory": true
+  },
+  {
+    "subject": "AM",
+    "classroom": "25",
+    "teacher": "Filip Kallmünzer",
+    "theory": true
+  },
+  {
+    "subject": "DB",
+    "classroom": "25",
+    "teacher": "Antonín Vobecký",
+    "theory": true
+  },
+  {
+    "subject": "DB",
+    "classroom": "25",
+    "teacher": "Antonín Vobecký",
+    "theory": false
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  
+  
+  
+  
+  
+  
+  {
+    "subject": "A",
+    "classroom": "29",
+    "teacher": "Šárka Paltíková",
+    "theory": true
+  },
+  {
+    "subject": "C",
+    "classroom": "25",
+    "teacher": "Kristína Studénková",
+    "theory": true
+  },
+  {
+    "subject": "M",
+    "classroom": "25",
+    "teacher": "Libuše Hrabalová",
+    "theory": true
+  },
+  {
+    "subject": "DB",
+    "classroom": "25",
+    "teacher": "Antonín Vobecký",
+    "theory": false
+  },
+  {
+    "subject": "PIS",
+    "classroom": "25",
+    "teacher": "Lucie Brčáková",
+    "theory": true
+  },
+  {
+    "subject": "PIS",
+    "classroom": "25",
+    "teacher": "Lucie Brčáková",
+    "theory": true
+  },
+  {
+    "subject": "TP",
+    "classroom": "25",
+    "teacher": "Lukáš Masopust",
+    "theory": true
+  },
+  {
+    "subject": "TV",
+    "classroom": "TV",
+    "teacher": "Pavel Lopocha",
+    "theory": false
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": "PSS",
+    "classroom": "25",
+    "teacher": "Lukáš Masopust",
+    "theory": true
+  },
+  {
+    "subject": "PSS",
+    "classroom": "8a",
+    "teacher": "Lukáš Masopust",
+    "theory": false
+  },
+  {
+    "subject": "PSS",
+    "classroom": "8a",
+    "teacher": "Lukáš Masopust",
+    "theory": false
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": "PV",
+    "classroom": "25",
+    "teacher": "Alena Reichlová",
+    "theory": true
+  },
+  {
+    "subject": "PV",
+    "classroom": "18b",
+    "teacher": "Ondřej Mandík",
+    "theory": false
+  },
+  {
+    "subject": "PV",
+    "classroom": "18b",
+    "teacher": "Ondřej Mandík",
+    "theory": false
+  },
+  {
+    "subject": "TV",
+    "classroom": "TV",
+    "teacher": "Pavel Lopocha",
+    "theory": false
+  },
+  {
+    "subject": "M",
+    "classroom": "25",
+    "teacher": "Libuše Hrabalová",
+    "theory": true
+  },
+  {
+    "subject": "WA",
+    "classroom": "25",
+    "teacher": "Daniel Adámek",
+    "theory": true
+  },
+  {
+    "subject": "WA",
+    "classroom": "19b",
+    "teacher": "Simona Hemžalová",
+    "theory": false
+  },
+  {
+    "subject": "WA",
+    "classroom": "19b",
+    "teacher": "Simona Hemžalová",
+    "theory": false
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  },
+  {
+    "subject": null,
+    "classroom": null,
+    "teacher": null,
+    "theory": null
+  }
+]

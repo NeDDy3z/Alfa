@@ -10,16 +10,16 @@ namespace Alfa
             List<List<List<Subject>>> unratedSchedules = new List<List<List<Subject>>>();
             List<List<List<Subject>>> ratedSchedules = new List<List<List<Subject>>>();
             List<Subject> subjects = new List<Subject>();
-            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(subjects, unratedSchedules, 1000);
-            Printer printer = new Printer();
+            Printer printer = new Printer(unratedSchedules, ratedSchedules);
             
+            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(subjects, unratedSchedules, 100); // in sec
             
-            
-            Subject.LoadFromFile(subjects, "../../classes.json");
+            Subject.LoadFromFile(subjects, "../../classes_test.json");
             scheduleGenerator.Generate();
-            printer.PrintSchedules(unratedSchedules);
-            
-            
+            printer.PrintStats();
+            //printer.PrintSchedules();
+
+
         }
     }
 }
