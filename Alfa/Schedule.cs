@@ -7,13 +7,13 @@ namespace Alfa
         private int _rating;
         private List<List<Subject>> _schedule;
 
-        public Schedule(List<List<Subject>> schedule)
+        public Schedule()
         {
             this._rating = 0;
-            this._schedule = schedule;
+            this._schedule = new List<List<Subject>>();
         }
 
         public int Rating { get { return this._rating; } set { this._rating = value; } }
-        public List<List<Subject>> Schedules { get { return this._schedule; } set { this._schedule = value; } }
+        public List<List<Subject>> Scheduledays { get { return this._schedule; } set { this._schedule = value; } }
     }
 }

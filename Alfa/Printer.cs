@@ -6,7 +6,7 @@ namespace Alfa
 {
     public class Printer
     {
-        public static void PrintSchedules(List<List<List<Subject>>> schedules)
+        public static void PrintSchedules(List<Schedule> schedules)
         {
             Dictionary<int, string> days = new Dictionary<int, string>()
             {
@@ -22,13 +22,13 @@ namespace Alfa
                 Console.WriteLine($"\nSchedule {scheduleNumber++}:"); 
                 Console.WriteLine("    1. 2. 3. 4. 5. 6. 7. 8. 9. 10.");
                 string temp = "";
-                for (int i = 0; i < schedule.Count; i++)
+                for (int i = 0; i < schedule.Scheduledays.Count; i++)
                 {
                     temp = "";
-                    for (int j = 0; j < schedule[i].Count; j++)
+                    for (int j = 0; j < schedule.Scheduledays[i].Count; j++)
                     {
-                        if (schedule[i][j].SubjectName.Length == 1) temp += schedule[i][j].SubjectName + "  ";
-                        if (schedule[i][j].SubjectName.Length == 2) temp += schedule[i][j].SubjectName + " ";
+                        if (schedule.Scheduledays[i][j].SubjectName.Length == 1) temp += schedule.Scheduledays[i][j].SubjectName + "  ";
+                        if (schedule.Scheduledays[i][j].SubjectName.Length == 2) temp += schedule.Scheduledays[i][j].SubjectName + " ";
                     }
                     //Console.WriteLine($"{days[i+1]}: {string.Join(" ", schedule[i].Select(subject => subject.SubjectName))}");
                     Console.WriteLine($"{days[i+1]}: {temp}");
@@ -37,7 +37,7 @@ namespace Alfa
             }
         }
 
-        public static void PrintSchedule(List<List<Subject>> schedule)
+        public static void PrintSchedule(Schedule schedule)
         {
             Dictionary<int, string> days = new Dictionary<int, string>()
             {
@@ -49,20 +49,20 @@ namespace Alfa
             };
             Console.WriteLine("\n     1.  2.  3.  4.  5.  6.  7.  8.  9.  10.");
             string temp = "";
-            for (int i = 0; i < schedule.Count; i++)
+            for (int i = 0; i < schedule.Scheduledays.Count; i++)
             {
                 temp = "";
-                for (int j = 0; j < schedule[i].Count; j++)
+                for (int j = 0; j < schedule.Scheduledays[i].Count; j++)
                 {
-                    if (schedule[i][j].SubjectName.Length == 1) temp += schedule[i][j].SubjectName + "   ";
-                    else if (schedule[i][j].SubjectName.Length == 2) temp += schedule[i][j].SubjectName + "  ";
-                    else if (schedule[i][j].SubjectName.Length == 3) temp += schedule[i][j].SubjectName +" ";
+                    if (schedule.Scheduledays[i][j].SubjectName.Length == 1) temp += schedule.Scheduledays[i][j].SubjectName + "   ";
+                    else if (schedule.Scheduledays[i][j].SubjectName.Length == 2) temp += schedule.Scheduledays[i][j].SubjectName + "  ";
+                    else if (schedule.Scheduledays[i][j].SubjectName.Length == 3) temp += schedule.Scheduledays[i][j].SubjectName +" ";
                 }
                 Console.WriteLine($"{days[i+1]}: {temp}");
             }
         }
 
-        public static void PrintStats(List<List<List<Subject>>> unratedSchedules, List<List<List<Subject>>> ratedSchedules)
+        public static void PrintStats(List<Schedule> unratedSchedules, List<Schedule> ratedSchedules)
         {
             Console.WriteLine($"Generated: {unratedSchedules.Count}");
             Console.WriteLine($"Rated: {ratedSchedules.Count}");

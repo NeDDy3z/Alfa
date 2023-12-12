@@ -7,8 +7,8 @@ namespace Alfa
         public static void Main(string[] args)
         {
             // Declaration
-            List<List<List<Subject>>> unratedSchedules = new List<List<List<Subject>>>();
-            List<List<List<Subject>>> ratedSchedules = new List<List<List<Subject>>>();
+            List<Schedule> unratedSchedules = new List<Schedule>();
+            List<Schedule> ratedSchedules = new List<Schedule>();
             List<Subject> subjects = new List<Subject>();
             
             ScheduleGenerator scheduleGenerator = new ScheduleGenerator(subjects, unratedSchedules, 1); // in sec
@@ -18,8 +18,8 @@ namespace Alfa
             scheduleGenerator.Generate();
             //scheduleEvaluator.Evaluate();
             
-            Printer.PrintStats(unratedSchedules, ratedSchedules);
-            //printer.PrintSchedules();
+            Printer.PrintStats(unratedSchedules, ratedSchedules); 
+            //Printer.PrintSchedules(unratedSchedules);
 
 
         }

@@ -9,13 +9,13 @@ namespace Alfa
 {
     public class ScheduleGenerator
     {
-        private List<List<List<Subject>>> _unratedSchedules;
+        private List<Schedule> _unratedSchedules;
         private List<Subject> _subjects;
         private Stopwatch _stopwatch;
         private int _timeout;
 
 
-        public ScheduleGenerator(List<Subject> subjects, List<List<List<Subject>>> unratedSchedules, int timeout)
+        public ScheduleGenerator(List<Subject> subjects, List<Schedule> unratedSchedules, int timeout)
         {
             this._subjects = subjects;
             this._unratedSchedules = unratedSchedules;
@@ -44,19 +44,15 @@ namespace Alfa
 
             foreach (var permutation in permutations)
             {
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    Console.WriteLine("Generation canceled.");
-                    break;
-                }
+                if (cancellationToken.IsCancellationRequested) break;
 
-                List<List<Subject>> schedule = new List<List<Subject>>();
+                Schedule schedule = new Schedule();
                 for (int i = 0; i < 5; i++)
                 {
                     List<Subject> daySubjects = permutation.Skip(i * 10).Take(10).ToList();
-                    schedule.Add(daySubjects);
+                    schedule.Scheduledays.Add(daySubjects);
                 }
-                if (IsValidSchedule(schedule)) _unratedSchedules.Add(schedule);
+                if (IsValidSchedule(schedule.Scheduledays)) _unratedSchedules.Add(schedule);
             }
         }
 
@@ -90,7 +86,7 @@ namespace Alfa
             {
                 foreach (var unratedSchedule in _unratedSchedules)
                 {
-                    if (schedule.SequenceEqual(unratedSchedule)) return false;
+                    if (schedule.SequenceEqual(unratedSchedule.Scheduledays)) return false;
                 }
             }
 
