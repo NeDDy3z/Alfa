@@ -25,11 +25,13 @@ namespace Alfa
         public string Teacher { get { return this.teacher; } }
         public bool Theory { get { return this.theory; } }
         
-        public static void LoadFromFile(List<Subject> list, string filePath)
+        public static List<Subject> LoadFromFile(string filePath)
         {
             string json = File.ReadAllText(filePath);
             List<Dictionary<string, object>> dictionaries =
                 JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(json);
+            List<Subject> list = new List<Subject>();
+            
             foreach (var dictionary in dictionaries)
             {
                 list.Add(new Subject(
@@ -38,6 +40,8 @@ namespace Alfa
                     Convert.ToString(dictionary["teacher"]), 
                     Convert.ToBoolean(dictionary["theory"])));
             }
+
+            return list;
         }
     }
 }

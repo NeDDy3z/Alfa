@@ -19,7 +19,7 @@ namespace Alfa
             int scheduleNumber = 1;
             foreach (var schedule in schedules)
             {
-                Console.WriteLine($"\nSchedule {scheduleNumber++}:"); 
+                Console.WriteLine($"\n#{scheduleNumber++} [{schedule.Rating}]:"); 
                 Console.WriteLine("    1. 2. 3. 4. 5. 6. 7. 8. 9. 10.");
                 string temp = "";
                 for (int i = 0; i < schedule.Scheduledays.Count; i++)

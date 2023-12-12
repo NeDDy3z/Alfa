@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Alfa
 {
@@ -6,22 +8,17 @@ namespace Alfa
     {
         public static void Main(string[] args)
         {
+            //Console.WriteLine(Convert.ToInt32(Regex.Match(null, @"\d+").Value));
+            
             // Declaration
-            List<Schedule> unratedSchedules = new List<Schedule>();
-            List<Schedule> ratedSchedules = new List<Schedule>();
-            List<Subject> subjects = new List<Subject>();
+            List<Schedule> finishedSchedules = new List<Schedule>();
+            string filePath = "../../classes_test.json";
             
-            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(subjects, unratedSchedules, 1); // in sec
-            //ScheduleEvaluator scheduleEvaluator = new ScheduleEvaluator(unratedSchedules, ratedSchedules);
-            
-            Subject.LoadFromFile(subjects, "../../classes_test.json");
+            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(Subject.LoadFromFile(filePath), finishedSchedules, 300);
             scheduleGenerator.Generate();
-            //scheduleEvaluator.Evaluate();
             
-            Printer.PrintStats(unratedSchedules, ratedSchedules); 
-            //Printer.PrintSchedules(unratedSchedules);
-
-
+            Printer.PrintStats(finishedSchedules, finishedSchedules);
+            Printer.PrintSchedules(finishedSchedules);
         }
     }
 }
