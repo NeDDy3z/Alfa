@@ -14,7 +14,7 @@ namespace Alfa
             List<Schedule> finishedSchedules = new List<Schedule>();
             string filePath = "../../classes_test.json";
             
-            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(Subject.LoadFromFile(filePath), finishedSchedules, 300);
+            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(Subject.LoadFromFile(filePath), finishedSchedules, 1000);
             scheduleGenerator.Generate();
             
             Printer.PrintStats(finishedSchedules, finishedSchedules);

@@ -39,6 +39,7 @@ namespace Alfa
         {
             // run generator in another thread
             var generatorTask = Task.Run(() => _generator.GenerateSchedules(cancellationToken), cancellationToken);
+            
             while (true)
             {
                 try

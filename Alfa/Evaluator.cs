@@ -25,11 +25,9 @@ namespace Alfa
                 else totalPoints -= 100;
 
                 // 3. Check classroom number (different floor levels)
-                /*
-                if (day.Any(subject => subject.SubjectName != null && Convert.ToInt32(Regex.Match(subject.Classroom, @"\d+").Value) < 20))
-                    totalPoints += 200_000;
-                else totalPoints -= 200_000;
-                */
+                if (day.Any(subject => subject.SubjectName != null && Convert.ToInt16(subject.Classroom) < 20))
+                    totalPoints += 100;
+                else totalPoints -= 200;
 
                 // 4. Check for null (free time) subjects at specific positions
                 if (!Enumerable.Range(4, 6).Any(position => day[position].SubjectName == null))
@@ -52,7 +50,7 @@ namespace Alfa
                 }
                 
                 // 7. Check if A, C, AM, M arent first or last 5 subjects of the day
-                List<String> profileSubjects = new List<string>() { "A", "C", "AM", "M" };
+                List<String> profileSubjects = new List<string>() { "C", "AM", "M" };
                 if (day.Take(5).Any(subject =>
                         subject != null && profileSubjects.Any(item => item != subject.SubjectName)) &&
                         profileSubjects.Any(subject => subject != day[0].SubjectName))
@@ -60,6 +58,11 @@ namespace Alfa
                 else totalPoints -= 200;
                 
                 //8.
+                //if there are only less than 4 subjects (with name not null) in the day, subtract 10000 points
+                if (!(day.Count(subject => subject.SubjectName != null) < 4))
+                    totalPoints += 1000;
+                else totalPoints -= 10_000;
+                
                 //9.
                 //10. When I meet Pustomas I want to kill myself -> -50k
                 if (day.Any(subject => subject.Teacher.Contains("Masopust")))

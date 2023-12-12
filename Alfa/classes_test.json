@@ -1,7 +1,7 @@
 ﻿[
   {
     "subject": "A",
-    "classroom": "5b",
+    "classroom": "5",
     "teacher": "Šárka Paltíková",
     "theory": true
   },
@@ -25,13 +25,13 @@
   },
   {
     "subject": "CIT",
-    "classroom": "17b",
+    "classroom": "17",
     "teacher": "Jakub Mazuch",
     "theory": false
   },
   {
     "subject": "CIT",
-    "classroom": "17b",
+    "classroom": "17",
     "teacher": "Jakub Mazuch",
     "theory": false
   },
@@ -204,13 +204,13 @@
   },
   {
     "subject": "PSS",
-    "classroom": "8a",
+    "classroom": "8",
     "teacher": "Lukáš Masopust",
     "theory": false
   },
   {
     "subject": "PSS",
-    "classroom": "8a",
+    "classroom": "8",
     "teacher": "Lukáš Masopust",
     "theory": false
   },
@@ -269,13 +269,13 @@
   },
   {
     "subject": "PV",
-    "classroom": "18b",
+    "classroom": "18",
     "teacher": "Ondřej Mandík",
     "theory": false
   },
   {
     "subject": "PV",
-    "classroom": "18b",
+    "classroom": "18",
     "teacher": "Ondřej Mandík",
     "theory": false
   },
@@ -293,13 +293,13 @@
   },
   {
     "subject": "WA",
-    "classroom": "19b",
+    "classroom": "19",
     "teacher": "Simona Hemžalová",
     "theory": false
   },
   {
     "subject": "WA",
-    "classroom": "19b",
+    "classroom": "19",
     "teacher": "Simona Hemžalová",
     "theory": false
   },

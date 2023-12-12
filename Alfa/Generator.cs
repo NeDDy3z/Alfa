@@ -19,7 +19,7 @@ namespace Alfa
         }
         
         public void GenerateSchedules(CancellationToken cancellationToken)
-        { 
+        {
             foreach (var permutation in GetPermutations(_subjects))
             {
                 if (cancellationToken.IsCancellationRequested) break;
