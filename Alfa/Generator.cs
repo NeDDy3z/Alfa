@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Alfa
 {
@@ -18,8 +16,10 @@ namespace Alfa
             this._generatedSchedules = generatedSchedules;
         }
         
-        public void GenerateSchedules(CancellationToken cancellationToken)
+        public void GenerateSchedules(CancellationToken cancellationToken, int threadNumber)
         {
+            //var perm = DividePermutations(GetPermutations(_subjects).ToList(), 4);
+            
             foreach (var permutation in GetPermutations(_subjects))
             {
                 if (cancellationToken.IsCancellationRequested) break;
@@ -31,6 +31,7 @@ namespace Alfa
                 }
                 if (IsValidSchedule(schedule)) _generatedSchedules.Add(schedule);
             } 
+            
         }
 
         private bool IsValidSchedule(Schedule schedule)
@@ -79,5 +80,17 @@ namespace Alfa
                 (e, c) => c.Prepend(e)
             );
         }
+        
+        private List<List<T>> DividePermutations<T>(List<T> list, int parts)
+        {
+            int chunkSize = (int)Math.Ceiling((double)list.Count / parts);
+
+            return list
+                .Select((value, index) => new { Index = index, Value = value })
+                .GroupBy(x => x.Index / chunkSize)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
+        }
+        
     }
 }
