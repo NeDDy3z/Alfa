@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Alfa
 {
@@ -7,15 +11,39 @@ namespace Alfa
         public static void Main(string[] args)
         {
             // Declaration
-            List<Schedule> finishedSchedules = new List<Schedule>();
             string filePath = "../../classes_test.json";
+            int timeout = 10;
             
-            // Generation
-            ScheduleGenerator scheduleGenerator = new ScheduleGenerator(Subject.LoadFromFile(filePath), finishedSchedules, 10);
+            bool ok = true;
+            while (ok)
+            {
+                Console.Write("Timer [s]: ");
+                timeout = Convert.ToInt32(Console.ReadLine());
+                if (timeout >= 1 && timeout <= 100000) ok = false;
+            }
+            
+            // Timer
+            Task.Run(() =>
+                {
+                    string start = DateTime.Now.ToString("HH:mm:ss");
+                    string end = DateTime.Now.AddSeconds(timeout).ToString("HH:mm:ss");
+                    while (timeout > 0)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(start +" - "+ end +"\n"+timeout--);
+                        Thread.Sleep(1000);
+                    }
+                }
+            );
+            
+
+            
+            // Generate
+            var scheduleGenerator = new ScheduleGenerator(Subject.LoadFromFile(filePath), timeout);
             scheduleGenerator.Generate();
             
             // Printing
-            Printer.PrintSchedules(finishedSchedules);
+            Printer.PrintSchedules(scheduleGenerator.RatedSchedules);
         }
     }
 }

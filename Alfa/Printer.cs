@@ -29,27 +29,25 @@ namespace Alfa
         {
             Console.Write($"[{schedule.Rating}]");
             Console.WriteLine("\n       1.    2.    3.    4.    5.    6.    7.    8.    9.    10.");
-            string temp = "";
             for (int i = 0; i < schedule.Scheduledays.Count; i++)
             {
-                temp = "";
+                Console.Write(_days[i+1] +": ");
                 for (int j = 0; j < schedule.Scheduledays[i].Count; j++)
                 {
-                    if (schedule.Scheduledays[i][j].SubjectName.Length == 1) temp += schedule.Scheduledays[i][j].SubjectName + "   |";
-                    else if (schedule.Scheduledays[i][j].SubjectName.Length == 2) temp += schedule.Scheduledays[i][j].SubjectName + "  |";
-                    else if (schedule.Scheduledays[i][j].SubjectName.Length == 3) temp += schedule.Scheduledays[i][j].SubjectName + " |";
-                    else temp += "    |";
-                    temp += " ";
+                    if (schedule.Scheduledays[i][j].Theory) Console.ForegroundColor = ConsoleColor.Green;
+                    else Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(schedule.Scheduledays[i][j].SubjectName);
+                
+                    Console.ForegroundColor = ConsoleColor.White;
+                    string temp = "";
+                    if (schedule.Scheduledays[i][j].SubjectName.Length == 1) temp += "   | ";
+                    else if (schedule.Scheduledays[i][j].SubjectName.Length == 2) temp += "  | ";
+                    else if (schedule.Scheduledays[i][j].SubjectName.Length == 3) temp +=" | ";
+                    else temp += "    | ";
+                    Console.Write(temp);
                 }
-                Console.WriteLine($"{_days[i+1]}: | {temp}");
+                Console.WriteLine();
             }
-            Console.WriteLine();
-        }
-
-        public static void PrintStats(List<Schedule> unratedSchedules, List<Schedule> ratedSchedules)
-        {
-            Console.WriteLine($"Generated: {unratedSchedules.Count}");
-            Console.WriteLine($"Rated: {ratedSchedules.Count}");
         }
     }
 }

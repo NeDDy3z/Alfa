@@ -10,67 +10,39 @@ namespace Alfa
         private List<Schedule> _generatedSchedules;
         private List<Subject> _subjects;
 
-        public Generator(List<Subject> subjects, List<Schedule> generatedSchedules)
+        public Generator(List<Schedule> generatedSchedules, List<Subject> subjects)
         {
-            this._subjects = subjects;
             this._generatedSchedules = generatedSchedules;
+            this._subjects = subjects;
         }
         
-        public void GenerateSchedules(CancellationToken cancellationToken, int threadNumber)
+        public void GenerateSchedules(bool invert)
         {
-            //var perm = DividePermutations(GetPermutations(_subjects).ToList(), 4);
+            var allPermutations = GetPermutations(_subjects);
+            if (invert) allPermutations.Reverse();
             
-            foreach (var permutation in GetPermutations(_subjects))
+            foreach (var permutation in allPermutations)
             {
-                if (cancellationToken.IsCancellationRequested) break;
                 Schedule schedule = new Schedule();
-                for (int i = 0; i < 5; i++)
-                {
-                    List<Subject> daySubjects = permutation.Skip(i * 10).Take(10).ToList();
-                    schedule.Scheduledays.Add(daySubjects);
-                }
-                if (IsValidSchedule(schedule)) _generatedSchedules.Add(schedule);
-            } 
-            
+                
+                for (int i = 0; i < 5; i++) schedule.Scheduledays.Add(permutation.Skip(i * 10).Take(10).ToList());
+                
+                if (CheckForDuplicates(schedule)) _generatedSchedules.Add(schedule);
+            }
         }
 
-        private bool IsValidSchedule(Schedule schedule)
+        private bool CheckForDuplicates(Schedule schedule)
         {
-            // If you find subject with theory == false, there must be another subject with same name and theory == false next to it, if there is, skip the next iteration, otherwise return false
-            for (int i = 0; i < schedule.Scheduledays.Count; i++)
+            List<String> scheduleSubjectNames = schedule.Scheduledays.SelectMany(x => x.Select(y => y.SubjectName)).ToList();
+            foreach (var sch in _generatedSchedules)
             {
-                for (int j = 0; j < schedule.Scheduledays[i].Count; j++)
-                {
-                    if (!schedule.Scheduledays[i][j].Theory)
-                    {
-                        if (j < 9)
-                        {
-                            if (schedule.Scheduledays[i][j].SubjectName == schedule.Scheduledays[i][j + 1].SubjectName &&
-                                schedule.Scheduledays[i][j + 1].Theory == false) continue;
-                            else if (j != 0 && !(schedule.Scheduledays[i][j].SubjectName == schedule.Scheduledays[i][j - 1].SubjectName &&
-                                       schedule.Scheduledays[i][j - 1].Theory == false)) return false;
-                        }
-                        else if (j == 9)
-                        {
-                            if (!(schedule.Scheduledays[i][j].SubjectName == schedule.Scheduledays[i][j - 1].SubjectName &&
-                                schedule.Scheduledays[i][j - 1].Theory == false)) return false;
-                        }
-                    }
-                }
-            }
-            // Compare to the previous schedule and if it's the same, return false
-            if (_generatedSchedules.Count > 0)
-            {
-                foreach (var unratedSchedule in _generatedSchedules)
-                {
-                    if (schedule.Scheduledays.SequenceEqual(unratedSchedule.Scheduledays)) return false;
-                }
+                if (scheduleSubjectNames.SequenceEqual(sch.Scheduledays
+                        .SelectMany(x => x.Select(y => y.SubjectName)).ToList())) return false;
             }
             return true;
         }
-
-
-        private IEnumerable<IEnumerable<T>> GetPermutations<T>(List<T> list)
+        
+        public IEnumerable<IEnumerable<T>> GetPermutations<T>(List<T> list)
         {
             if (list.Count == 1)
                 return new List<List<T>> { list };
@@ -80,17 +52,5 @@ namespace Alfa
                 (e, c) => c.Prepend(e)
             );
         }
-        
-        private List<List<T>> DividePermutations<T>(List<T> list, int parts)
-        {
-            int chunkSize = (int)Math.Ceiling((double)list.Count / parts);
-
-            return list
-                .Select((value, index) => new { Index = index, Value = value })
-                .GroupBy(x => x.Index / chunkSize)
-                .Select(x => x.Select(v => v.Value).ToList())
-                .ToList();
-        }
-        
     }
 }
