@@ -24,22 +24,9 @@ namespace Alfa
                             else if (j != 0 && !(schedule.Scheduledays[i][j].SubjectName == schedule.Scheduledays[i][j - 1].SubjectName &&
                                                  schedule.Scheduledays[i][j - 1].Theory == false)) return false;
                         }
-                        else if (j == 9)
-                        {
-                            if (!(schedule.Scheduledays[i][j].SubjectName == schedule.Scheduledays[i][j - 1].SubjectName &&
-                                  schedule.Scheduledays[i][j - 1].Theory == false)) return false;
-                        }
+                        else if (!(schedule.Scheduledays[i][j].SubjectName == schedule.Scheduledays[i][j - 1].SubjectName &&
+                                   schedule.Scheduledays[i][j - 1].Theory == false)) return false;
                     }
-                }
-            }
-            
-            // Check if there are more than 2 null subjects inbetween subjects
-            foreach (var day in schedule.Scheduledays)
-            {
-                for (int i = 0; i < schedule.Scheduledays.Count; i++)
-                {
-                    // if there are 2 null subjects in a row and there is any subject after index i, that is not null return false
-                    if (day[i].SubjectName == "" && day[i + 1].SubjectName == "" && day.Skip(i).Any(subject => subject.SubjectName != "")) return false;
                 }
             }
             
@@ -51,7 +38,6 @@ namespace Alfa
             if (IsValidSchedule(schedule))
             {
                 int totalPoints = 0;
-
                 for (int dayIndex = 0; dayIndex < schedule.Scheduledays.Count; dayIndex++)
                 {
                     List<Subject> day = schedule.Scheduledays[dayIndex];

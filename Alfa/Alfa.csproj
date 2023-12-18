@@ -83,7 +83,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="classes.json" />
-      <Content Include="classes_test.json" />
+      <Content Include="classes_good.json" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />

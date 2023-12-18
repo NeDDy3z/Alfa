@@ -11,7 +11,7 @@ namespace Alfa
         public static void Main(string[] args)
         {
             // Declaration
-            string filePath = "../../classes_test.json";
+            string filePath = "../../classes.json";
             int timeout = 10;
             
             bool ok = true;
@@ -21,6 +21,9 @@ namespace Alfa
                 timeout = Convert.ToInt32(Console.ReadLine());
                 if (timeout >= 1 && timeout <= 100000) ok = false;
             }
+
+            
+            
             
             // Timer
             Task.Run(() =>
