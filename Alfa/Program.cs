@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,15 +12,22 @@ namespace Alfa
         public static void Main(string[] args)
         {
             // Declaration
-            List<Subject> subjects = new List<Subject>(Subject.LoadFromFile("../../classes_test.json"));
+            List<Subject> subjects = new List<Subject>(Subject.LoadFromFile("../../classes.json"));
             List<Schedule> rated = new List<Schedule>();
-            int timeout;
-            
+            int timeout = 1;
+            int threads = 2;
+
             // User insert
             while (true)
             {
-                //Console.Clear();
-                Console.Write("Timer [s]: ");
+                Console.Clear();
+                Console.Write("Threads [2-8]: ");
+                threads = Convert.ToInt32(Console.ReadLine());
+                if (threads >= 2 && threads <= 8) break;
+            }
+            while (true)
+            {
+                Console.Write("Timer [10-100k (s)]: ");
                 timeout = Convert.ToInt32(Console.ReadLine());
                 if (timeout >= 1 && timeout <= 100000) break;
             }
@@ -28,12 +36,14 @@ namespace Alfa
             Countdown(timeout);
             
             // Generate
-            var scheduleGenerator = new ScheduleGenerator(rated, subjects, 0, timeout);
+            var scheduleGenerator = new ScheduleGenerator(rated, subjects, threads, timeout);
             scheduleGenerator.Generate();
+            
+            rated = rated.OrderByDescending(obj => obj.Rating).ToList();
+
             
             // Printing
             Printer.PrintSchedules(rated); 
-            
         }
 
         static void Countdown(int timeout)

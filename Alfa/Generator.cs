@@ -18,10 +18,12 @@ namespace Alfa
             this._random = new Random();
         }
         
-        public void GenerateSchedules()
+        public void GenerateSchedules(CancellationToken cancellationToken)
         {
             while (true)
             {
+                if (cancellationToken.IsCancellationRequested) break;
+                
                 List<Subject> randomSubjects = new List<Subject>();
                 randomSubjects.AddRange(Randomize(_subjects));
                 Schedule schedule = new Schedule();
@@ -59,15 +61,9 @@ namespace Alfa
             {
                 int random = _random.Next(subjects.Count - 1);
                 int index = random - (random % 2);
+                if (index % 6 == 0) index += 2;
                 subjects.InsertRange(index, practicalSubjects.GetRange(i,2));
             }
-            /*
-            foreach (var sub in practicalSubjects)
-            {
-                subjects.InsertRange(_random.Next(subjects.Count - 1), practicalSubjects.GetRange(0,2));
-                //practicalSubjects.RemoveRange(0,2);
-            }
-            */
             
             return subjects;
         }

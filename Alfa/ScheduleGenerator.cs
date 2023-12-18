@@ -13,14 +13,16 @@ namespace Alfa
         private List<Schedule> _ratedSchedules;
         private Generator _generator;
         private Evaluator _evaluator;
+        private int _threads;
         private int _timeout;
-
+        
         public ScheduleGenerator(List<Schedule> ratedSchedules, List<Subject> subjects, int threads,int timeout)
         {
             this._generatedSchedules = new List<Schedule>();
             this._ratedSchedules = ratedSchedules;
             this._generator = new Generator(_generatedSchedules, subjects);
             this._evaluator = new Evaluator();
+            this._threads = threads;
             this._timeout = timeout;
         }
         
@@ -28,14 +30,29 @@ namespace Alfa
         {
             var cts = new CancellationTokenSource();
             var token = cts.Token;
-            
-            // Create two threads for generating schedules
-            Task t1 = Task.Run(() => _generator.GenerateSchedules());
-            Task t2 = Task.Run(() => _generator.GenerateSchedules());
-            Task t3 = Task.Run(() => Evaluate(token));
-            Task t4 = Task.Run(() => Evaluate(token));            
 
-            Task.WaitAll(new Task[] { t1, t2, t3 }, TimeSpan.FromSeconds(_timeout));
+            List<Task> tasks = new List<Task>();
+            int t1, t2;
+            if (_threads % 2 == 0)
+            {
+                t1 = _threads / 2; 
+                t2 = _threads / 2;
+            }
+            else
+            {
+                t1 = _threads / 2 + 1;
+                t2 = _threads / 2;
+            }
+            for (int i = 0; i < t1; i++)
+            {
+                tasks.Add(Task.Run(() => _generator.GenerateSchedules(token)));
+            }
+            for (int i = 0; i < t2; i++)
+            {
+                tasks.Add(Task.Run(() => Evaluate(token)));
+            }
+
+            Task.WaitAll(tasks.ToArray(), TimeSpan.FromSeconds(_timeout)); 
         }
 
         
@@ -47,11 +64,11 @@ namespace Alfa
                 try {
                     Schedule schedule = _generatedSchedules[_generatedSchedules.Count - 1];
                     schedule = _evaluator.EvaluateSchedule(schedule);
-                    _ratedSchedules.Add(schedule);
+                    if (schedule.Rating > 0) _ratedSchedules.Add(schedule);
                     
-                    if (_ratedSchedules.Count >= 5)
+                    if (_ratedSchedules.Count > 3)
                     {
-                        _ratedSchedules = _ratedSchedules.OrderByDescending(obj => obj.Rating).ToList();
+                        _ratedSchedules = _ratedSchedules.OrderBy(obj => obj.Rating).ToList();
                         _ratedSchedules.RemoveRange(5, _ratedSchedules.Count - 5);
                     }
                 }
