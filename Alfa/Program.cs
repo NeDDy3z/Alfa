@@ -12,12 +12,25 @@ namespace Alfa
         public static void Main(string[] args)
         {
             // Declaration
+            /*
             List<Subject> subjects = new List<Subject>(Subject.LoadFromFile("../../classes.json"));
             List<Schedule> rated = new List<Schedule>();
+            */
+            string filePath = "";
             int timeout = 1;
             int threads = 2;
 
             // User insert
+            while (true)
+            {
+                Console.Clear();
+                Console.Write("Subjects file path [JSON]: ");
+                filePath = Convert.ToString(Console.ReadLine());
+                break;
+            }
+            List<Subject> subjects = new List<Subject>(Subject.LoadFromFile(filePath));
+            List<Schedule> rated = new List<Schedule>();
+            
             while (true)
             {
                 Console.Clear();
