@@ -15,7 +15,7 @@ namespace Alfa
         private Evaluator _evaluator;
         private int _timeout;
 
-        public ScheduleGenerator(List<Schedule> ratedSchedules, List<Subject> subjects, int timeout)
+        public ScheduleGenerator(List<Schedule> ratedSchedules, List<Subject> subjects, int threads,int timeout)
         {
             this._generatedSchedules = new List<Schedule>();
             this._ratedSchedules = ratedSchedules;
@@ -23,7 +23,6 @@ namespace Alfa
             this._evaluator = new Evaluator();
             this._timeout = timeout;
         }
-        public List<Schedule> RatedSchedules { get { return this._ratedSchedules; } }
         
         public void Generate()
         {

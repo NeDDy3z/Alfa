@@ -25,14 +25,13 @@ namespace Alfa
             }
             
             // Countdown
-            //Countdown(timeout);
+            Countdown(timeout);
             
             // Generate
-            var scheduleGenerator = new ScheduleGenerator(rated, subjects, timeout);
+            var scheduleGenerator = new ScheduleGenerator(rated, subjects, 0, timeout);
             scheduleGenerator.Generate();
             
             // Printing
-            Console.WriteLine(rated.Count);
             Printer.PrintSchedules(rated); 
             
         }
