@@ -57,6 +57,9 @@ namespace Alfa
             
             // Printing
             Printer.PrintSchedules(rated); 
+            
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
 
         static void Countdown(int timeout)
