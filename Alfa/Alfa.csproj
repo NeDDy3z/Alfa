@@ -84,6 +84,7 @@
     <ItemGroup>
       <Content Include="classes.json" />
       <Content Include="classes_good.json" />
+      <Content Include="classes_test.json" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />

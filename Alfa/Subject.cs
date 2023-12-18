@@ -22,6 +22,15 @@ namespace Alfa
             this.teacher = teacher;
             this.theory = theory;
         }
+        
+        public Subject()
+        {
+            this.subjectName = "";
+            this.classroom = "";
+            this.floor = 0;
+            this.teacher = "";
+            this.theory = false;
+        }
 
         public string SubjectName { get { return this.subjectName; } }
         public string Classroom { get { return this.classroom; } }
@@ -43,9 +52,7 @@ namespace Alfa
                         Convert.ToInt32(dictionary["floor"]),
                         Convert.ToString(dictionary["teacher"]), 
                         Convert.ToBoolean(dictionary["theory"])));   
-                
             }
-
             return list;
         }
     }

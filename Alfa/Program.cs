@@ -11,21 +11,34 @@ namespace Alfa
         public static void Main(string[] args)
         {
             // Declaration
-            string filePath = "../../classes.json";
-            int timeout = 10;
+            List<Subject> subjects = new List<Subject>(Subject.LoadFromFile("../../classes_test.json"));
+            List<Schedule> rated = new List<Schedule>();
+            int timeout;
             
-            bool ok = true;
-            while (ok)
+            // User insert
+            while (true)
             {
+                //Console.Clear();
                 Console.Write("Timer [s]: ");
                 timeout = Convert.ToInt32(Console.ReadLine());
-                if (timeout >= 1 && timeout <= 100000) ok = false;
+                if (timeout >= 1 && timeout <= 100000) break;
             }
+            
+            // Countdown
+            //Countdown(timeout);
+            
+            // Generate
+            var scheduleGenerator = new ScheduleGenerator(rated, subjects, timeout);
+            scheduleGenerator.Generate();
+            
+            // Printing
+            Console.WriteLine(rated.Count);
+            Printer.PrintSchedules(rated); 
+            
+        }
 
-            
-            
-            
-            // Timer
+        static void Countdown(int timeout)
+        {
             Task.Run(() =>
                 {
                     string start = DateTime.Now.ToString("HH:mm:ss");
@@ -38,15 +51,6 @@ namespace Alfa
                     }
                 }
             );
-            
-
-            
-            // Generate
-            var scheduleGenerator = new ScheduleGenerator(Subject.LoadFromFile(filePath), timeout);
-            scheduleGenerator.Generate();
-            
-            // Printing
-            Printer.PrintSchedules(scheduleGenerator.RatedSchedules);
         }
     }
 }

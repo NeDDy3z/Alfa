@@ -202,6 +202,20 @@
     "theory": true
   },
   {
+    "subject": "PIS",
+    "classroom": "19a",
+    "floor": 3,
+    "teacher": "Jaroslav Benda",
+    "theory": false
+  },
+  {
+    "subject": "PIS",
+    "classroom": "19a",
+    "floor": 3,
+    "teacher": "Jaroslav Benda",
+    "theory": false
+  },
+  {
     "subject": null,
     "classroom": null,
     "floor" : null,
