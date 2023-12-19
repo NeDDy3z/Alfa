@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -8,35 +7,35 @@ namespace Alfa
 {
     public class Subject
     {
-        private string subjectName;
-        private string classroom;
-        private int floor;
-        private string teacher;
-        private bool theory;
+        private string _subjectName;
+        private string _classroom;
+        private int _floor;
+        private string _teacher;
+        private bool _theory;
 
         public Subject(string subjectName, string classroom, int floor, string teacher, bool theory)
         {
-            this.subjectName = subjectName;
-            this.classroom = classroom;
-            this.floor = floor;
-            this.teacher = teacher;
-            this.theory = theory;
+            this._subjectName = subjectName;
+            this._classroom = classroom;
+            this._floor = floor;
+            this._teacher = teacher;
+            this._theory = theory;
         }
         
         public Subject()
         {
-            this.subjectName = "";
-            this.classroom = "";
-            this.floor = 0;
-            this.teacher = "";
-            this.theory = false;
+            this._subjectName = "";
+            this._classroom = "";
+            this._floor = 0;
+            this._teacher = "";
+            this._theory = false;
         }
 
-        public string SubjectName { get { return this.subjectName; } }
-        public string Classroom { get { return this.classroom; } }
-        public int Floor { get { return this.floor; } }
-        public string Teacher { get { return this.teacher; } }
-        public bool Theory { get { return this.theory; } }
+        public string SubjectName { get { return this._subjectName; } }
+        public string Classroom { get { return this._classroom; } }
+        public int Floor { get { return this._floor; } }
+        public string Teacher { get { return this._teacher; } }
+        public bool Theory { get { return this._theory; } }
         
         public static List<Subject> LoadFromFile(string filePath)
         {

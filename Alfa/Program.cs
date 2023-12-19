@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,14 +12,10 @@ namespace Alfa
         public static void Main(string[] args)
         {
             // Declaration
-            /*
-            List<Subject> subjects = new List<Subject>(Subject.LoadFromFile("../../classes.json"));
-            List<Schedule> rated = new List<Schedule>();
-            */
             string error = "";
-            string filePath = "";
-            int timeout = 1;
-            int threads = 2;
+            string filePath;
+            int timeout;
+            int threads;
             
             // User insert
             while (true)

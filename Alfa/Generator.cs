@@ -67,17 +67,5 @@ namespace Alfa
             
             return subjects;
         }
-        
-        private bool CheckForDuplicates(Schedule schedule)
-        {
-            List<String> scheduleSubjectNames = schedule.Scheduledays.SelectMany(x => x.Select(y => y.SubjectName)).ToList();
-            foreach (var sch in _generatedSchedules)
-            {
-                if (scheduleSubjectNames.SequenceEqual(sch.Scheduledays
-                        .SelectMany(x => x.Select(y => y.SubjectName)).ToList())) return false;
-            }
-            return true;
-        }
-        
     }
 }
