@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Alfa
 {
@@ -47,6 +48,12 @@ namespace Alfa
                 }
                 Console.WriteLine();
             }
+        }
+
+        public static void PrintStats(int generatedCount, TimeSpan s)
+        {
+            // trim s.tostring() so that it has only 8 characters from start
+            Console.WriteLine($"\nGenerated: {generatedCount} schedules\nTime elapsed: {s.ToString().Substring(0,8)}");
         }
     }
 }

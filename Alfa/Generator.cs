@@ -7,16 +7,20 @@ namespace Alfa
 {
     public class Generator
     {
-        private List<Schedule> _generatedSchedules;
         private List<Subject> _subjects;
+        private List<Schedule> _generatedSchedules;
+        private int _generatedCount;
         private Random _random;
 
-        public Generator(List<Schedule> generatedSchedules, List<Subject> subjects)
+        public Generator(List<Subject> subjects, List<Schedule> generatedSchedules)
         {
-            this._generatedSchedules = generatedSchedules;
             this._subjects = subjects;
+            this._generatedSchedules = generatedSchedules;
+            this._generatedCount = 0;
             this._random = new Random();
         }
+        
+        public int GeneratedCount => _generatedCount;
         
         public void GenerateSchedules(CancellationToken cancellationToken)
         {
@@ -28,7 +32,7 @@ namespace Alfa
                 randomSubjects.AddRange(Randomize(_subjects));
                 Schedule schedule = new Schedule();
 
-                while (randomSubjects.Count != 34) Thread.Sleep(1000);
+                //while (randomSubjects.Count != 34) Thread.Sleep(500);
                 
                 for (int i = 0; i < 5; i++)
                 {
@@ -41,6 +45,7 @@ namespace Alfa
 
                     while (schedule.Scheduledays[i].Count < 10) schedule.Scheduledays[i].Add(new Subject());
                 }
+                _generatedCount += 1;
                 _generatedSchedules.Add(schedule);
             }
         }
@@ -55,7 +60,6 @@ namespace Alfa
 
             subjects.Clear();
             subjects.AddRange(theorySubjects);
-            
             
             for (int i = 0; i < practicalSubjects.Count; i += 2)
             {
