@@ -8,14 +8,21 @@ using System.Configuration;
 
 namespace Alfa
 {
+    /// <summary>
+    /// Represents the main program for the Schedule Generator.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// The entry point of the application.
+        /// </summary>
+        /// <param name="args">Command-line arguments.</param>
         public static void Main(string[] args)
         {
             // Declaration
             Stopwatch s = new Stopwatch();
             List<Schedule> rated = new List<Schedule>();
-            string filePath = "/classes.json";
+            string filePath;
             int threads = 2;
             int timeout = 10;
             bool custom = true;
@@ -26,7 +33,7 @@ namespace Alfa
             while (true)
             {
                 Console.Clear();
-                if (error.Contains("file")) Console.WriteLine(error);
+                Console.WriteLine("Schedule Generator");
                 Console.Write("Load App.config? [Y/N]:  ");
                 try
                 {
@@ -36,17 +43,20 @@ namespace Alfa
                         default:
                             throw new Exception();
                         case "y":
+                            // Load the settings from the App.config file
                             filePath = ConfigurationManager.AppSettings["filepath"];
                             threads = Convert.ToInt32(ConfigurationManager.AppSettings["threads"]);
                             timeout = Convert.ToInt32(ConfigurationManager.AppSettings["timeout"]);
                             custom = false;
                             break;
-                        case "n": break;
+                        case "n":
+                            // Continue to enter the custom data
+                            break;
                     }
 
                     break;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     error = "Invalid file path!";
                 }
@@ -78,7 +88,7 @@ namespace Alfa
 
                         break;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         error = "Invalid file path!";
                     }
@@ -96,7 +106,7 @@ namespace Alfa
                         if (threads >= 2 && threads <= Environment.ProcessorCount) break;
                         else throw new Exception();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         error = "Invalid number of threads!";
                     }
@@ -106,14 +116,14 @@ namespace Alfa
                 {
                     Console.Clear();
                     if (error.Contains("limit")) Console.WriteLine(error);
-                    Console.Write("Timer [1-1000 s]: ");
+                    Console.Write("Timer [1-10000 s]: ");
                     try
                     {
                         timeout = Convert.ToInt32(Console.ReadLine());
-                        if (timeout >= 1 && timeout <= 1000) break;
+                        if (timeout >= 1 && timeout <= 10000) break;
                         else throw new Exception();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         error = "Invalid time limit!";
                     }
@@ -149,7 +159,10 @@ namespace Alfa
             Console.ReadKey();
         }
 
-        // Simple countdown clock
+        /// <summary>
+        /// Displays a countdown based on the specified timeout.
+        /// </summary>
+        /// <param name="timeout">The timeout duration in seconds.</param>
         static void Countdown(int timeout)
         {
             string start = DateTime.Now.ToString("HH:mm:ss");
@@ -162,6 +175,8 @@ namespace Alfa
                     Console.WriteLine($"{start} - {end}\nGenerating" + new string('.', i));
                     Thread.Sleep(500);
                 }
+
+                return;
             }
         }
     }

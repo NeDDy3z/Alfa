@@ -4,6 +4,9 @@ using System.Diagnostics;
 
 namespace Alfa
 {
+    /// <summary>
+    /// Provides methods for printing schedules and statistics to the console.
+    /// </summary>
     public class Printer
     {
         private static Dictionary<int, string> _days = new Dictionary<int, string>()
@@ -15,6 +18,10 @@ namespace Alfa
             { 5, "Pá" }
         };
 
+        /// <summary>
+        /// Prints a list of schedules to the console.
+        /// </summary>
+        /// <param name="schedules">The list of schedules to be printed.</param>
         public static void PrintSchedules(List<Schedule> schedules)
         {
             int scheduleNumber = 1;
@@ -30,6 +37,10 @@ namespace Alfa
             }
         }
 
+        /// <summary>
+        /// Prints a single schedule to the console.
+        /// </summary>
+        /// <param name="schedule">The schedule to be printed.</param>
         public static void PrintSchedule(Schedule schedule)
         {
             Console.Write($"[{schedule.Rating}]");
@@ -56,6 +67,11 @@ namespace Alfa
             }
         }
 
+        /// <summary>
+        /// Prints statistics including the number of generated schedules and elapsed time to the console.
+        /// </summary>
+        /// <param name="generatedCount">The number of generated schedules.</param>
+        /// <param name="s">The elapsed time.</param>
         public static void PrintStats(int generatedCount, TimeSpan s)
         {
             // trim s.tostring() so that it has only 8 characters from start

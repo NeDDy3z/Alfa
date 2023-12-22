@@ -23,6 +23,7 @@
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <DocumentationFile>bin\Debug\Alfa.xml</DocumentationFile>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -87,6 +88,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="classes.json" />
+      <Content Include="README.md" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />

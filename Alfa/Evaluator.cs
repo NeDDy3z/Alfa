@@ -4,8 +4,16 @@ using System.Linq;
 
 namespace Alfa
 {
+    /// <summary>
+    /// Evaluates the quality of a schedule based on various criteria.
+    /// </summary>
     public class Evaluator
     {
+        /// <summary>
+        /// Evaluates the given schedule and assigns a rating based on predefined criteria.
+        /// </summary>
+        /// <param name="schedule">The schedule to be evaluated.</param>
+        /// <returns>The schedule with an assigned rating.</returns>
         public Schedule EvaluateSchedule(Schedule schedule)
         {
             int totalPoints = 0;

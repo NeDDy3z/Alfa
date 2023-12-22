@@ -29,3 +29,4 @@ C:\Dev\School\PV\alfa\Alfa\Alfa\bin\Debug\Newtonsoft.Json.dll
 C:\Dev\School\PV\alfa\Alfa\Alfa\bin\Debug\Newtonsoft.Json.xml
 C:\Dev\School\PV\alfa\Alfa\Alfa\bin\Debug\System.Configuration.ConfigurationManager.dll
 C:\Dev\School\PV\alfa\Alfa\Alfa\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Dev\School\PV\alfa\Alfa\Alfa\bin\Debug\Alfa.xml
