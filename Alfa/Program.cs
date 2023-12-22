@@ -35,9 +35,6 @@ namespace Alfa
                             filePath = Path.GetFullPath(filePath);
                             if (filePath.EndsWith(".json") && Path.IsPathRooted(filePath)) break;
                             throw new Exception();
-                        case "DEBUG":
-                            filePath = "DEBUG";
-                            break;
                         case "/d":
                             filePath = "../../classes.json";
                             break;

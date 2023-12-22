@@ -11,6 +11,7 @@ namespace Alfa
         private List<Schedule> _generatedSchedules;
         private int _generatedCount;
         private Random _random;
+        private int[] _randomNumbers = new[] { 5, 6, 6, 7, 7, 7 };
 
         public Generator(List<Subject> subjects, List<Schedule> generatedSchedules)
         {
@@ -31,20 +32,22 @@ namespace Alfa
                 List<Subject> randomSubjects = new List<Subject>();
                 randomSubjects.AddRange(Randomize(_subjects));
                 Schedule schedule = new Schedule();
-
-                //while (randomSubjects.Count != 34) Thread.Sleep(500);
                 
                 for (int i = 0; i < 5; i++)
                 {
-                    if (randomSubjects.Count > 7)
+                    int r = _randomNumbers[_random.Next(_randomNumbers.Length)];
+                    if (i < 4)
                     {
-                        schedule.Scheduledays.Add(randomSubjects.Take(7).ToList());
-                        randomSubjects.RemoveRange(0, 7);
+                        schedule.Scheduledays.Add(randomSubjects.Take(r).ToList());
+                        randomSubjects.RemoveRange(0, r);
                     }
                     else schedule.Scheduledays.Add(randomSubjects.Take(randomSubjects.Count).ToList());
 
+                    if (schedule.Scheduledays[i].Count > 7) schedule.Scheduledays[i].Insert(_random.Next(4,7), new Subject());
+                    
                     while (schedule.Scheduledays[i].Count < 10) schedule.Scheduledays[i].Add(new Subject());
                 }
+                
                 _generatedCount += 1;
                 _generatedSchedules.Add(schedule);
             }

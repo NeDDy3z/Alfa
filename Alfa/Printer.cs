@@ -18,10 +18,15 @@ namespace Alfa
         public static void PrintSchedules(List<Schedule> schedules)
         {
             int scheduleNumber = 1;
-            foreach (var schedule in schedules)
+            if (schedules.Count == 0) Console.WriteLine("No schedules found!");
+            else
             {
-                Console.Write($"\n#{scheduleNumber++} "); 
-                PrintSchedule(schedule);
+                Console.Clear();
+                foreach (var schedule in schedules)
+                {
+                    Console.Write($"\n#{scheduleNumber++} "); 
+                    PrintSchedule(schedule);
+                }
             }
         }
 

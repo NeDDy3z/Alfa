@@ -63,9 +63,11 @@ namespace Alfa
                 if (cancellationToken.IsCancellationRequested) break;
                 try {
                     Schedule schedule = _generatedSchedules[_generatedSchedules.Count - 1];
+                    _generatedSchedules.RemoveAt(_generatedSchedules.IndexOf(schedule));
+
                     schedule = _evaluator.EvaluateSchedule(schedule);
-                    if (schedule.Rating > 0) _ratedSchedules.Add(schedule);
                     
+                    if (schedule.Rating > -100_000) _ratedSchedules.Add(schedule);
                     if (_ratedSchedules.Count > 5)
                     {
                         _ratedSchedules = _ratedSchedules.OrderBy(obj => obj.Rating).ToList();
